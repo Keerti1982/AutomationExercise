@@ -51,7 +51,7 @@ wait = WebDriverWait(driver, 5)
 wait.until(expected_conditions.text_to_be_present_in_element((By.XPATH, "//p[text()='Test Products']"), 'Test Products'))
 
 # Get the reference of the topPanel that has the product name as "Test Products"
-desiredTopPanel = []
+desiredTopPanel = None
 
 # Iterate through all the products on the screen and search for a product name "Test Products"
 for product in products:
@@ -66,8 +66,7 @@ action = ActionChains(driver)
 
 action.move_to_element(desiredTopPanel).perform()
 
-productButton = wait.until(
-    expected_conditions.presence_of_element_located((By.XPATH, "//div[@class='edit-button-container']/button")))
+productButton = wait.until(expected_conditions.presence_of_element_located((By.XPATH, "//div[@class='edit-button-container']/button")))
 
 # Once the product appears in the list after mouse hover ,click the edit button
 productButton.click()
@@ -137,3 +136,5 @@ desiredTopPanel.find_element_by_css_selector(".delete-button").click()
 time.sleep(2)
 
 driver.find_element_by_xpath("//div[@class='cloubi-modal-dialog-footer']/button[1]").click()
+
+driver.close()
